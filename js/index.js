@@ -70,11 +70,23 @@ function bindOccasionEventListener() {
     })
 }
 
+/**
+ * filter by product
+ * @param {JSON} data 
+ * @param {string} product 
+ */
+function filterByProduct(data, product) {
+    //TODO
+}
+
+function bindMenuProducts() {
+    //TODO
+}
 
 window.addEventListener("DOMContentLoaded", async () => {
     MENU_DATA = await  getData("Flowers");
     populateMenu(MENU_DATA);
     bindOccasionEventListener();
-
+    bindMenuProducts();
 });
 
