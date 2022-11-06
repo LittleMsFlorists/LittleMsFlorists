@@ -2,7 +2,7 @@
 
 import {getData} from "./firebase.js";
 import {controlInit} from "./controller.js";
-import {signUpInit, auth, checkUser} from "./signUpForm.js"
+import {signUpInit, auth, checkUser} from "./UserAuth.js"
 
 let MENU_DATA = undefined
 

@@ -1,4 +1,4 @@
-import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
 import { showLogin, showSignup, showMenu } from "./controller.js";
 export const auth = getAuth();
 async function signup(email, password) {
@@ -29,8 +29,40 @@ async function formSubmit (e) {
         alert('Account created successfully!');
     else if (isSuccess == false)
         alert('Failed to create new account');
-    else 
+    else  {
         alert(isSuccess);
+        return;
+    }
+
+    hideSignUpLogInShowLogOutBtn(true);
+    showMenu(true);
+    showLogin(false);
+    showSignup(false);
+}
+
+async function login(email, password) {
+    return signInWithEmailAndPassword(auth, email, password)
+    .then(() => {
+      return true;
+    })
+    .catch((error) => {
+      return error.code;
+    });
+}
+
+async function logIn(e) {
+    e.preventDefault();
+    const email = document.querySelector('#userEmailLogin').value;
+    const password = document.querySelector('#passwordLogin').value;
+    const isSuccess = await login(email, password);
+    if (isSuccess == true)
+        alert('Logged In successfully!');
+    else 
+    {
+        alert(isSuccess);
+        return;
+    }
+        
 
     hideSignUpLogInShowLogOutBtn(true);
     showMenu(true);
@@ -61,7 +93,8 @@ function logOut() {
 
 export function signUpInit() {
     document.querySelector('.SignUpForm').addEventListener('submit', formSubmit);
-    document.querySelector('#Log-Out').addEventListener('click', logOut)
+    document.querySelector('.LogInForm').addEventListener('submit', logIn);
+    document.querySelector('#Log-Out').addEventListener('click', logOut);
 }
 
 export function checkUser() {
