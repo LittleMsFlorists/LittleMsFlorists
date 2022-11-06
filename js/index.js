@@ -1,7 +1,8 @@
 // Main js file
 
 import {getData} from "./firebase.js";
-
+import {controlInit} from "./controller.js";
+import {signUpInit, auth, checkUser} from "./signUpForm.js"
 
 let MENU_DATA = undefined
 
@@ -9,15 +10,14 @@ let MENU_DATA = undefined
  * Populate the menu
  * @param {JSON} data Flowers table
  */
+// <h5 class="fw-light">${flowerInfo.ProductType == 0? 'Best Seller':'Premium'}</h5>
 async function populateMenu(data) {
-    console.log(data);
     const menu = document.querySelector("#Menu");
     const keys = Object.keys(data);
-    console.log("Keys: ", keys);
+    keys.sort(() => Math.random() - 0.5);
     menu.innerHTML = "";
     for(let i = 0; i < keys.length; i++) {
         const flowerInfo = data[keys[i]];
-        console.log(flowerInfo)
         menu.innerHTML += `
         <div class="col mb-5" data-id="${keys[i]}">
                     <div class="card h-100">
@@ -26,7 +26,8 @@ async function populateMenu(data) {
                         <div class="card-body p-4">
                             <div class="text-center">
                         
-                                <h5 class="fw-bolder">${flowerInfo.ProductType == 0? 'Best Seller':'Premium'}</h5>
+                                <h5 class="fw-bolder">${flowerInfo.Name}</h5>
+                                
                         
                                 $${flowerInfo.Price}
                             </div>
@@ -46,10 +47,12 @@ async function populateMenu(data) {
  * @param {string} occasion 
  * @return data after being filtered
  */
-async function filter(data ,occasion) {
+function filterByOccasion(data ,occasion) {
     const result = {}
     for (const key in data) {
         const flowerInfo = data[key];
+        flowerInfo.Occasions.toLowerCase();
+        occasion.toLowerCase();
         if (flowerInfo.Occasions.includes(occasion))
             result[key] = flowerInfo
     }
@@ -61,10 +64,10 @@ async function filter(data ,occasion) {
 function bindOccasionEventListener() {
     const occasionList = document.querySelectorAll("#occasions > li a");
     occasionList.forEach((el) => {
-        el.addEventListener("click", async (e) => {
+        el.addEventListener("click", (e) => {
             e.preventDefault();
             const occasion = el.innerHTML;
-            const filData = await filter(MENU_DATA, occasion);
+            const filData = filterByOccasion(MENU_DATA, occasion);
             populateMenu(filData)
         })
     })
@@ -73,20 +76,47 @@ function bindOccasionEventListener() {
 /**
  * filter by product
  * @param {JSON} data 
- * @param {string} product 
+ * @param {string} product
+ * @return
  */
 function filterByProduct(data, product) {
     //TODO
+    if (product == 'Best Seller')
+        product = 0;
+    else
+        product = 1;    
+
+    const result = {}
+    for (const key in data){
+        const flowerInfo = data[key];
+        if (flowerInfo.ProductType == product)
+            result[key] = flowerInfo
+    }
+    return result
 }
 
-function bindMenuProducts() {
+function bindProductEventListener() {
     //TODO
+    const productList = document.querySelectorAll ("#products > li a");
+    productList.forEach((el) => {
+        el.addEventListener("click", (e) => {
+            e.preventDefault();
+            const product = el.innerHTML;
+            const filData = filterByProduct (MENU_DATA, product);
+            populateMenu(filData)
+        })
+    })
+    
 }
 
 window.addEventListener("DOMContentLoaded", async () => {
     MENU_DATA = await  getData("Flowers");
     populateMenu(MENU_DATA);
     bindOccasionEventListener();
-    bindMenuProducts();
+    bindProductEventListener();
+    controlInit();
+    signUpInit();
+    checkUser();
+    console.log(auth.currentUser);
 });
 

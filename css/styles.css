@@ -63,6 +63,8 @@
   --bs-body-bg: #fff;
 }
 
+
+
 *,
 *::before,
 *::after {
@@ -239,6 +241,7 @@ a {
 }
 a:hover {
   color: #0a4aa9;
+  cursor: pointer;
 }
 
 a:not([href]):not([class]), a:not([href]):not([class]):hover {
@@ -283,8 +286,6 @@ kbd {
   font-size: 0.875em;
   color: #fff;
   background-color: #212529;
-  
-  /* use this as background pic https://www.eventdone.com/templates/yootheme/cache/The_Language_of_FlowersArticle-7fd0f845.jpeg */
   border-radius: 0.2rem;
 }
 kbd kbd {
@@ -3161,22 +3162,22 @@ textarea.form-control-lg {
 }
 .btn-check:focus + .btn-warning, .btn-warning:focus {
   color: #000;
-  background-color: #ffca2c;
-  border-color: #ffc720;
-  box-shadow: 0 0 0 0.25rem rgba(217, 164, 6, 0.5);
+  background-color:transparent;
+  border-color: transparent;
+  box-shadow: transparent;
 }
 .btn-check:checked + .btn-warning, .btn-check:active + .btn-warning, .btn-warning:active, .btn-warning.active, .show > .btn-warning.dropdown-toggle {
   color: #000;
-  background-color: #ffcd39;
-  border-color: #ffc720;
+  background-color: #bc5477;
+  border-color: #bc5477;
 }
 .btn-check:checked + .btn-warning:focus, .btn-check:active + .btn-warning:focus, .btn-warning:active:focus, .btn-warning.active:focus, .show > .btn-warning.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.25rem rgba(217, 164, 6, 0.5);
 }
 .btn-warning:disabled, .btn-warning.disabled {
   color: #000;
-  background-color: #ffc107;
-  border-color: #ffc107;
+  background-color: #bc5477;
+  border-color: #bc5477;
 }
 
 .btn-danger {
