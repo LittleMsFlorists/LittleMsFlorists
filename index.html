@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>LMF Homepage</title>
+        <title>Little Ms. Florists</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- icons-->
@@ -24,7 +24,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item"><a class="nav-link active" aria-current="page" href=>Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/about.html">About</a></li>
+                        <li class="nav-item"><a class="nav-link" href="" id="aboutLink">About</a></li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Products</a>
                             
@@ -57,43 +57,16 @@
                         
                     <div class="nav-item"><a class="nav-link text-black" id="Log-In" >Login</a></div>
                     <div class="nav-item"><a class="nav-link text-black" id="Log-Out" hidden >Log Out</a></div>
-                    <form class="d-flex">
-                        <button class="btn btn-outline-colorful" type="submit">
+                    <div class="d-flex">
+                        <button id="cartBtn" class="btn btn-outline-colorful" type="submit">
                             <i class="bi-cart-fill me-1"></i>Cart
-                            <span class="badge bg-colorful text-white ms-1 rounded-pill">0</span>
+                            <span id="cartItem" class="badge bg-colorful text-white ms-1 rounded-pill" >0</span>
                         </button> 
-                    </form>
+                    </div>
                     
                 </div>
             </div>
         </nav>
-        
-        <!--Cart form-->
-        <!--<section class="d-flex py-5 flex-column min-vh-100">
-            <div class="container  px-4 px-lg-5 mt-5">
-            <h1 class="d-flex justify-content-between align-items-center">
-            <span>Cart 
-            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-            <path d="M922.9 701.9H327.4l29.9-60.9 496.8-.9c16.8 0 31.2-12 34.2-28.6l68.8-385.1c1.8-10.1-.9-20.5-7.5-28.4a34.99 34.99 0 0 0-26.6-12.5l-632-2.1-5.4-25.4c-3.4-16.2-18-28-34.6-28H96.5a35.3 35.3 0 1 0 0 70.6h125.9L246 312.8l58.1 281.3-74.8 122.1a34.96 34.96 0 0 0-3 36.8c6 11.9 18.1 19.4 31.5 19.4h62.8a102.43 102.43 0 0 0-20.6 61.7c0 56.6 46 102.6 102.6 102.6s102.6-46 102.6-102.6c0-22.3-7.4-44-20.6-61.7h161.1a102.43 102.43 0 0 0-20.6 61.7c0 56.6 46 102.6 102.6 102.6s102.6-46 102.6-102.6c0-22.3-7.4-44-20.6-61.7H923c19.4 0 35.3-15.8 35.3-35.3a35.42 35.42 0 0 0-35.4-35.2zM305.7 253l575.8 1.9-56.4 315.8-452.3.8L305.7 253zm96.9 612.7c-17.4 0-31.6-14.2-31.6-31.6 0-17.4 14.2-31.6 31.6-31.6s31.6 14.2 31.6 31.6a31.6 31.6 0 0 1-31.6 31.6zm325.1 0c-17.4 0-31.6-14.2-31.6-31.6 0-17.4 14.2-31.6 31.6-31.6s31.6 14.2 31.6 31.6a31.6 31.6 0 0 1-31.6 31.6z">
-            </path>
-            </svg>
-            </span>
-            <a class="h6 text-decoration-none link-secondary text-black" href="/checkout">Checkout 
-            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-            <path d="M869 487.8L491.2 159.9c-2.9-2.5-6.6-3.9-10.5-3.9h-88.5c-7.4 0-10.8 9.2-5.2 14l350.2 304H152c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h585.1L386.9 854c-5.6 4.9-2.2 14 5.2 14h91.5c1.9 0 3.8-.7 5.2-2L869 536.2a32.07 32.07 0 0 0 0-48.4z">
-            </path>
-            </svg>
-            </a>
-            </h1>
-            <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">Your Cart is empty
-            </div>
-            </div>
-            </section>
-            -->
-
-            
-        
-        
 
         <!-- Header-->
         <header class="header-bg py-4">
@@ -162,6 +135,42 @@
                 </div>
             </section>   
         </section>
+
+       
+
+        <!-- About Us -->
+        <section hidden id="AboutSection" class="py-3 text-center vh-75">
+            <label> <h1>About us:</h1> </label>
+            <p>***The LMF is here to serve your needs for floral arrangements when you’re on the go! LMF was founded in the year 2022 by founders Hoa Do, Michelle Ibarra Arriaga, Natasha Casupanan, Nickki Aquino, and Patricia Caparas. This women-owned company is based in Orange County, California, and has ever since been growing into one of the most creative, easily accessible, custom, eco-friendly, and high quality floral arrangements online websites ever created. With added advanced anti-virus softwares, you can now shop with confidence. Shop for any theme, whether it be for birthdays or weddings, and explore endless different styles to make your occasion the best it can be using LMF!</p>
+            <p>***Our vision as a company is to create a floral arrangement website to create goods for any occasion, using popular styles using freshly grown handpicked quality flowers for every order placed. Because of the online presence of LMF, ordering from LMF is as easy as sending a text message! Using our custom option for the arrangements, there is always going to be room for creativity, and if you are in need of a quick style, there are popular styles everyone loves!</p>
+            <p>***Our mission statement as a company is to provide high-quality floral arrangements using custom-made, fresh picked flowers, and creative styles to suit any occasion with the comfort of ordering from your smartphone or website, while providing safe and quick checkout processes. Whereas other floral arrangement companies may require in-person appointments to create a custom bouquet, we specialize in ensuring the bouquets can be ordered quickly and in orderly fashion. The floral arrangements are created in a fast but eco-friendly strategy to ensure that you can have as much creative room as possible for your dream bouquet, and have it delivered as soon as possible to make it for your occasion.</p>
+        </section>
+
+        
+        <!--Cart form-->
+        
+            <section id="CartSection" hidden class="py-7 min-vh-100 px-4 px-lg-5 mt-5">
+                <h1 class="d-flex justify-content-between align-items-center">
+                    <span>Cart 
+                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M922.9 701.9H327.4l29.9-60.9 496.8-.9c16.8 0 31.2-12 34.2-28.6l68.8-385.1c1.8-10.1-.9-20.5-7.5-28.4a34.99 34.99 0 0 0-26.6-12.5l-632-2.1-5.4-25.4c-3.4-16.2-18-28-34.6-28H96.5a35.3 35.3 0 1 0 0 70.6h125.9L246 312.8l58.1 281.3-74.8 122.1a34.96 34.96 0 0 0-3 36.8c6 11.9 18.1 19.4 31.5 19.4h62.8a102.43 102.43 0 0 0-20.6 61.7c0 56.6 46 102.6 102.6 102.6s102.6-46 102.6-102.6c0-22.3-7.4-44-20.6-61.7h161.1a102.43 102.43 0 0 0-20.6 61.7c0 56.6 46 102.6 102.6 102.6s102.6-46 102.6-102.6c0-22.3-7.4-44-20.6-61.7H923c19.4 0 35.3-15.8 35.3-35.3a35.42 35.42 0 0 0-35.4-35.2zM305.7 253l575.8 1.9-56.4 315.8-452.3.8L305.7 253zm96.9 612.7c-17.4 0-31.6-14.2-31.6-31.6 0-17.4 14.2-31.6 31.6-31.6s31.6 14.2 31.6 31.6a31.6 31.6 0 0 1-31.6 31.6zm325.1 0c-17.4 0-31.6-14.2-31.6-31.6 0-17.4 14.2-31.6 31.6-31.6s31.6 14.2 31.6 31.6a31.6 31.6 0 0 1-31.6 31.6z">
+                            </path>
+                        </svg>
+                    </span>
+                <a class="h6 text-decoration-none link-secondary text-black" href="/checkout">Checkout 
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+            <path d="M869 487.8L491.2 159.9c-2.9-2.5-6.6-3.9-10.5-3.9h-88.5c-7.4 0-10.8 9.2-5.2 14l350.2 304H152c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h585.1L386.9 854c-5.6 4.9-2.2 14 5.2 14h91.5c1.9 0 3.8-.7 5.2-2L869 536.2a32.07 32.07 0 0 0 0-48.4z">
+            </path>
+            </svg>
+            </a>
+            </h1>
+            <div class="container px-4 px-lg-5 mt-5 h-75">
+                <div id="cartBody" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">Your Cart is empty
+                </div>
+            </div>
+        </section>
+
+
         <!-- Footer-->
         <footer class="py-3 bg-colorful fixed-bottom">
                 <div class="row"><div class="col d-flex justify-content-center">
@@ -186,7 +195,7 @@
             <p class="mt-2 text-center text-white">Copyright © Little Miss Florists 2022</p>
         </footer>
 
-        <!-- Bootstrap core JS-->
+        <!-- core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
         

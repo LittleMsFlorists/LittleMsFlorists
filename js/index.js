@@ -2,9 +2,10 @@
 
 import {getData} from "./firebase.js";
 import {controlInit} from "./controller.js";
-import {signUpInit, auth, checkUser} from "./UserAuth.js"
+import {signUpInit, auth, checkUser} from "./UserAuth.js";
+import {updateCart, reloadCart, bindRemove} from "./cart.js";
 
-let MENU_DATA = undefined
+export let MENU_DATA = undefined
 
 /**
  * Populate the menu
@@ -34,12 +35,33 @@ async function populateMenu(data) {
                         </div>
                         
                         <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                            <div class="text-center"><a class="btn btn-outline-colorful mt-auto" href="#">Add to cart</a></div>
+                            <div class="text-center"><button data-addToCart data-itemid="${keys[i]}" class="btn btn-outline-colorful mt-auto">Add to cart</button></div>
                 </div>
             </div>
         </div>
         `
     }
+}
+
+function bindAddToCart() {
+    const menu = document.querySelector("#Menu");
+    menu.addEventListener("click", (event) => {
+        const target = event.target;
+        if (target.matches('button[data-addToCart]')) 
+        {   
+            let CART_DATA = localStorage.getItem('cart')? JSON.parse(localStorage.getItem('cart')):[];
+            const key = target.dataset.itemid;
+            console.log(key);
+            const index = CART_DATA.findIndex(item => item.key == key);
+            if (index != -1)
+                CART_DATA[index].quantity++;
+            else 
+                CART_DATA.push({key: key, quantity: 1});
+
+            localStorage.setItem('cart', JSON.stringify(CART_DATA));
+            updateCart();
+        }
+    })
 }
 
 /**
@@ -54,7 +76,7 @@ function filterByOccasion(data ,occasion) {
         flowerInfo.Occasions.toLowerCase();
         occasion.toLowerCase();
         if (flowerInfo.Occasions.includes(occasion))
-            result[key] = flowerInfo
+            result[key] = flowerInfo;
     }
     return result
 }
@@ -68,7 +90,7 @@ function bindOccasionEventListener() {
             e.preventDefault();
             const occasion = el.innerHTML;
             const filData = filterByOccasion(MENU_DATA, occasion);
-            populateMenu(filData)
+            populateMenu(filData);
         })
     })
 }
@@ -103,7 +125,7 @@ function bindProductEventListener() {
             e.preventDefault();
             const product = el.innerHTML;
             const filData = filterByProduct (MENU_DATA, product);
-            populateMenu(filData)
+            populateMenu(filData);
         })
     })
     
@@ -117,6 +139,8 @@ window.addEventListener("DOMContentLoaded", async () => {
     controlInit();
     signUpInit();
     checkUser();
-    console.log(auth.currentUser);
+    bindAddToCart();
+    reloadCart();
+    bindRemove();
 });
 
