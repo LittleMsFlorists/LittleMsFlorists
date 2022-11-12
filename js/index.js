@@ -28,9 +28,9 @@ async function populateMenu(data) {
                             <div class="text-center">
                         
                                 <h5 class="fw-bolder">${flowerInfo.Name}</h5>
-                                Occasions: ${flowerInfo.Occasions}
+                                <span class="text-gray-500">Occasions: ${flowerInfo.Occasions}
                                 <br>
-                                $${flowerInfo.Price}<br>
+                                <span class="text-success fw-bolder">$${flowerInfo.Price}<br>
                                 <span class="text-warning">${flowerInfo.ProductType==0? "Best Seller":"Premium"}
                             </div>
                         </div>

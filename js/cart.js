@@ -44,15 +44,15 @@ export function renderCart(cart = null) {
                             <div class="card-body p-4">
                                 <div class="text-center">
                                     <h5 class="fw-bolder">${flowerInfo.Name}</h5>
-                                    $${flowerInfo.Price}
+                                    <span class="text-success">$${flowerInfo.Price}
                                 </div>
                                 <div data-quantity-control class="text-center">
-                                    <button data-decrement-quantity data-key="${item.key}" class="btn btn-outline-colorful mt-auto">-</button><b>${item.quantity}</b><button data-increment-quantity data-key="${item.key}" class="btn btn-outline-colorful mt-auto">+</button>
+                                    <button data-decrement-quantity data-key="${item.key}" class="btn btn-outline-colorful mt-auto me-2 ms-2">-</button><b>${item.quantity}</b><button data-increment-quantity data-key="${item.key}" class="btn btn-outline-colorful mt-auto me-2 ms-2">+</button>
                                 </div>
                             </div>
                             
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><button data-removebtn data-itemID="${item.key}" data-quantity="${item.quantity}" class="btn btn-outline-colorful mt-auto">Remove</button></div>
+                                <div class="text-center"><button data-removebtn data-itemID="${item.key}" data-quantity="${item.quantity}" class="btn btn-outline-danger mt-auto">Remove</button></div>
                     </div>
                 </div>
             </div>
