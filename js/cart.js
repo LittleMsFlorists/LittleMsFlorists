@@ -34,6 +34,7 @@ export function renderCart(cart = null) {
     else {
         cartBody.innerHTML = '';
         cart.forEach(item => {
+            if (item.quantity == 0) return;
             const flowerInfo = MENU_DATA[item.key];
             cartBody.innerHTML += `
             <div class="col mb-5" data-id="${item.key}">
@@ -42,13 +43,11 @@ export function renderCart(cart = null) {
                             
                             <div class="card-body p-4">
                                 <div class="text-center">
-                            
                                     <h5 class="fw-bolder">${flowerInfo.Name}</h5>
-                                    
-                            
                                     $${flowerInfo.Price}
-                                    <br>
-                                    <b>quantity: ${item.quantity}</b>
+                                </div>
+                                <div data-quantity-control class="text-center">
+                                    <button data-decrement-quantity data-key="${item.key}" class="btn btn-outline-colorful mt-auto">-</button><b>${item.quantity}</b><button data-increment-quantity data-key="${item.key}" class="btn btn-outline-colorful mt-auto">+</button>
                                 </div>
                             </div>
                             
@@ -62,7 +61,7 @@ export function renderCart(cart = null) {
     }
 }
 
-export function bindRemove() {
+export function bindEventCart() {
     const menu = document.querySelector("#cartBody");
     menu.addEventListener("click", (event) => {
         const target = event.target;
@@ -77,6 +76,37 @@ export function bindRemove() {
             localStorage.setItem('cart', JSON.stringify(CART_DATA));
             updateCart(quantity, false);
             renderCart(CART_DATA);
+            updateTotalPrice(CART_DATA);
+        }
+        else if (target.matches('button[data-decrement-quantity'))
+        {
+            let CART_DATA = localStorage.getItem('cart')? JSON.parse(localStorage.getItem('cart')):[];
+            const key = target.dataset.key;
+            
+            const quantityB = target.nextSibling;
+            let   quantity = parseInt(quantityB.innerHTML);
+            if (quantity == 0)
+                return;
+        
+            CART_DATA.map(item => { if (item.key == key) item.quantity--;})
+
+            localStorage.setItem('cart', JSON.stringify(CART_DATA));
+            updateCart(1, false);
+            renderCart(CART_DATA);
+            updateTotalPrice(CART_DATA);
+
+        }
+        else if (target.matches('button[data-increment-quantity'))
+        {
+            let CART_DATA = localStorage.getItem('cart')? JSON.parse(localStorage.getItem('cart')):[];
+            const key = target.dataset.key;        
+            CART_DATA.map(item => { if (item.key == key) item.quantity++;})
+
+            localStorage.setItem('cart', JSON.stringify(CART_DATA));
+            updateCart(1, true);
+            renderCart(CART_DATA);
+            updateTotalPrice(CART_DATA);
+
         }
     })
 }
@@ -88,4 +118,30 @@ export function reloadCart() {
     let CART_DATA = localStorage.getItem('cart')? JSON.parse(localStorage.getItem('cart')):[];
     const totalItem = CART_DATA.reduce((acc, cur) => acc += cur.quantity, 0);
     updateCart(totalItem, true);
+    updateTotalPrice()
+}
+
+/**
+ * Updates total price and total items
+ * @param {Array} data if data is null then load cart from localstorage
+ */
+export function updateTotalPrice (data = null) {
+    if (data == null)
+        data = localStorage.getItem('cart')? JSON.parse(localStorage.getItem('cart')):[];
+
+    const totalPriceSpan = document.querySelector('span[data-total-item-price]');
+    if (data.length == 0)
+        totalPriceSpan.innerHTML = 'Total Items: 0 - Price: $0';
+    else {
+
+        let totalItems = 0;
+        let totalPrice = 0;
+        data.forEach(item => {
+            totalItems += item.quantity;
+            totalPrice += item.quantity * MENU_DATA[item.key].Price;
+        })
+
+        totalPriceSpan.innerHTML = `Total Items: ${totalItems} - Price: $${totalPrice}`;
+    }
+
 }

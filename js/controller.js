@@ -1,4 +1,4 @@
-import { renderCart } from "./cart.js";
+import { renderCart, updateTotalPrice } from "./cart.js";
 
 // control interface
 
@@ -65,6 +65,7 @@ function controlInit() {
         showCart(true);
         showAbout(false);
         renderCart();
+        updateTotalPrice()
     })
 
     aboutLink.addEventListener('click', (e) => {

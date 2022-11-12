@@ -3,7 +3,7 @@
 import {getData} from "./firebase.js";
 import {controlInit} from "./controller.js";
 import {signUpInit, auth, checkUser} from "./UserAuth.js";
-import {updateCart, reloadCart, bindRemove} from "./cart.js";
+import {updateCart, reloadCart, bindEventCart} from "./cart.js";
 
 export let MENU_DATA = undefined
 
@@ -28,9 +28,10 @@ async function populateMenu(data) {
                             <div class="text-center">
                         
                                 <h5 class="fw-bolder">${flowerInfo.Name}</h5>
-                                
-                        
-                                $${flowerInfo.Price}
+                                Occasions: ${flowerInfo.Occasions}
+                                <br>
+                                $${flowerInfo.Price}<br>
+                                <span class="text-warning">${flowerInfo.ProductType==0? "Best Seller":"Premium"}
                             </div>
                         </div>
                         
@@ -141,6 +142,6 @@ window.addEventListener("DOMContentLoaded", async () => {
     checkUser();
     bindAddToCart();
     reloadCart();
-    bindRemove();
+    bindEventCart();
 });
 
