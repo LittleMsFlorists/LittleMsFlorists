@@ -1,6 +1,9 @@
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
+
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
 import { showLogin, showSignup, showMenu } from "./controller.js";
 export const auth = getAuth();
+
+// Sign Up for new users
 async function signup(email, password) {
     return createUserWithEmailAndPassword(auth, email, password)
         .then(() => {
@@ -40,6 +43,7 @@ async function formSubmit (e) {
     showSignup(false);
 }
 
+// login for existing  users
 async function login(email, password) {
     return signInWithEmailAndPassword(auth, email, password)
     .then(() => {
@@ -70,6 +74,34 @@ async function logIn(e) {
     showSignup(false);
 }
 
+// Reset Password for existing users
+
+  async function ResetPass(email) {
+    return sendPasswordResetEmail (auth, email)
+    .then(() => {
+        return true;
+        // Password reset email sent!
+        // ..
+      })
+      .catch((error) => {
+        return error.code;
+      });
+  }
+
+  async function resetPass(e) {
+    e.preventDefault ();
+    const email = document.querySelector('#userResetPassEmail').value;
+    const isSuccess = await ResetPass(email);
+    if(isSuccess == true)
+        alert('Password-reset email is sent!');
+    else {
+        alert(isSuccess);
+        return;
+    }
+  }
+
+  
+
 export function hideSignUpLogInShowLogOutBtn(isShown) {
     const loginButton = document.querySelector('#Log-In');
     const signupButton = document.querySelector('#Sign-Up');
@@ -95,6 +127,7 @@ export function signUpInit() {
     document.querySelector('.SignUpForm').addEventListener('submit', formSubmit);
     document.querySelector('.LogInForm').addEventListener('submit', logIn);
     document.querySelector('#Log-Out').addEventListener('click', logOut);
+    document.querySelector('.ResetPassForm').addEventListener('submit', resetPass);
 }
 
 export function checkUser() {

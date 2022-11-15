@@ -4,6 +4,7 @@ import { renderCart, updateTotalPrice, CheckCart } from "./cart.js";
 
 const loginButton  = document.querySelector('#Log-In');
 const signupButton = document.querySelector('#Sign-Up');
+const ResetPassLink = document.querySelector('#ResetPassLink');
 const cartButton   = document.querySelector('#cartBtn');
 const aboutLink    = document.querySelector('#aboutLink');
 const checkoutBtn  = document.querySelector('#checkoutBtn');
@@ -20,6 +21,13 @@ function showSignup(isShown) {
         document.querySelector('#SignupSection').setAttribute('hidden', '');
     else
         document.querySelector('#SignupSection').removeAttribute('hidden', '');
+}
+
+function showResetPass(isShown) {
+    if (!isShown)
+        document.querySelector('#ResetPassSection').setAttribute('hidden', '');
+    else
+        document.querySelector('#ResetPassSection').removeAttribute('hidden', '');
 }
 
 function showMenu(isShown) {
@@ -50,6 +58,7 @@ function showCheckOut(isShown) {
         document.querySelector('#checkoutForm').removeAttribute('hidden', '');
 }
 
+
 function controlInit() {
     loginButton.addEventListener('click', () => {
         showLogin(true);
@@ -58,6 +67,7 @@ function controlInit() {
         showCart(false);
         showAbout(false);
         showCheckOut(false);
+        showResetPass(false);
     })
     signupButton.addEventListener('click', () => {
         showLogin(false);
@@ -65,8 +75,19 @@ function controlInit() {
         showSignup(true);
         showCart(false);
         showAbout(false);
+        showCheckOut(false);
+        showResetPass(false);
+    })
+    ResetPassLink.addEventListener('click', () => {
+        showLogin(false);
+        showMenu(false);
+        showSignup(false);
+        showResetPass(true);
+        showCart(false);
+        showAbout(false);
         showCheckOut(false)
     })
+
     cartButton.addEventListener('click', () => {
         showLogin(false);
         showMenu(false);
@@ -76,6 +97,7 @@ function controlInit() {
         renderCart();
         updateTotalPrice();
         showCheckOut(false);
+        showResetPass(false);
     })
 
     aboutLink.addEventListener('click', (e) => {
@@ -86,6 +108,7 @@ function controlInit() {
         showCart(false);
         showAbout(true);
         showCheckOut(false);
+        showResetPass(false);
     })
 
     checkoutBtn.addEventListener('click', () => {
@@ -96,6 +119,7 @@ function controlInit() {
         showCart(false);
         showAbout(false);
         showCheckOut(true);
+        showResetPass(false);
     })
 
 }
@@ -106,5 +130,6 @@ export {
     showMenu,
     showSignup,
     showAbout,
-    showCart
+    showCart,
+    showResetPass,
 }

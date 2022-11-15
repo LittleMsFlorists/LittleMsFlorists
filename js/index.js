@@ -11,7 +11,7 @@ export let MENU_DATA = undefined
  * Populate the menu
  * @param {JSON} data Flowers table
  */
-// <h5 class="fw-light">${flowerInfo.ProductType == 0? 'Best Seller':'Premium'}</h5>
+
 async function populateMenu(data) {
     const menu = document.querySelector("#Menu");
     const keys = Object.keys(data);
@@ -104,7 +104,6 @@ function bindOccasionEventListener() {
  * @return
  */
 function filterByProduct(data, product) {
-    //TODO
     document.querySelector('#MenuTitle').innerHTML = product;
     if (product == 'Best Seller')
         product = 0;
@@ -122,7 +121,6 @@ function filterByProduct(data, product) {
 
 
 function bindProductEventListener() {
-    //TODO
     const productList = document.querySelectorAll ("#products > li a");
     productList.forEach((el) => {
         el.addEventListener("click", (e) => {
