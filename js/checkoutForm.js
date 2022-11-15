@@ -14,6 +14,7 @@ async function formSubmitHandler(event) {
             userInfo[target.id] = target.value
     })
 
+
     checkUser(userInfo);
     cart = cleanUpCart(cart); // remove items where the quantity = 0
     const orderId = await placeOrder(userInfo, cart);
@@ -26,6 +27,7 @@ async function formSubmitHandler(event) {
         alert("Cannot place your order, please try again later");
     }
 }
+
 
 function checkUser(userInfo) {
     if (auth.currentUser) {

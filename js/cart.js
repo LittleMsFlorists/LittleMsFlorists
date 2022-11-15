@@ -61,6 +61,17 @@ export function renderCart(cart = null) {
     }
 }
 
+export function CheckCart() {
+    const itemCounter = document.querySelector('#cartItem').innerHTML;
+    if (parseInt(itemCounter, 10) == 0)
+    {
+        alert("Please add at least 1 item to continue");
+        return true;
+    }
+    return false;
+}
+        
+
 export function bindEventCart() {
     const menu = document.querySelector("#cartBody");
     menu.addEventListener("click", (event) => {

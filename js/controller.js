@@ -1,4 +1,4 @@
-import { renderCart, updateTotalPrice } from "./cart.js";
+import { renderCart, updateTotalPrice, CheckCart } from "./cart.js";
 
 // control interface
 
@@ -89,6 +89,7 @@ function controlInit() {
     })
 
     checkoutBtn.addEventListener('click', () => {
+        if (CheckCart()) return;
         showLogin(false);
         showMenu(false);
         showSignup(false);
