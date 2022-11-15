@@ -71,6 +71,7 @@ function bindAddToCart() {
  * @return data after being filtered
  */
 function filterByOccasion(data ,occasion) {
+    document.querySelector('#MenuTitle').innerHTML = occasion;
     const result = {}
     for (const key in data) {
         const flowerInfo = data[key];
@@ -104,6 +105,7 @@ function bindOccasionEventListener() {
  */
 function filterByProduct(data, product) {
     //TODO
+    document.querySelector('#MenuTitle').innerHTML = product;
     if (product == 'Best Seller')
         product = 0;
     else
@@ -117,6 +119,7 @@ function filterByProduct(data, product) {
     }
     return result
 }
+
 
 function bindProductEventListener() {
     //TODO
