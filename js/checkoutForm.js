@@ -1,6 +1,5 @@
 import { submitOrder } from "./firebase.js";
 import { auth } from "./UserAuth.js";
-const checkOutForm = document.querySelector("#form-CheckOut");
 
 /**
  * Form Submission handler 
@@ -16,11 +15,9 @@ async function formSubmitHandler(event) {
     })
 
     checkUser(userInfo);
-    
-    //localStorage.setItem('userInfo', JSON.stringify(userInfo));
-    
     cart = cleanUpCart(cart); // remove items where the quantity = 0
     const orderId = await placeOrder(userInfo, cart);
+
     if (orderId) {
         alert("Your order has been placed\n Your order number is: " + orderId);
         cleanCart();
@@ -51,6 +48,9 @@ async function placeOrder(userInfo, cart) {
     return orderID;
 }
 
+/**
+ * Module initilizer
+ */
 export function checkoutFormInit() {
-    checkOutForm.addEventListener('submit', formSubmitHandler);
+    document.querySelector("#form-CheckOut").addEventListener('submit', formSubmitHandler);
 }
