@@ -5,8 +5,8 @@ import { renderCart, updateTotalPrice } from "./cart.js";
 const loginButton  = document.querySelector('#Log-In');
 const signupButton = document.querySelector('#Sign-Up');
 const cartButton   = document.querySelector('#cartBtn');
-const aboutLink  = document.querySelector('#aboutLink');
-
+const aboutLink    = document.querySelector('#aboutLink');
+const checkoutBtn  = document.querySelector('#checkoutBtn');
 // Show Sign up when sign up button is clicked and hide other components (login and menu)
 function showLogin(isShown) {
     if (!isShown)
@@ -38,9 +38,16 @@ function showCart(isShown) {
 
 function showAbout(isShown) {
     if (!isShown)
-    document.querySelector('#AboutSection').setAttribute('hidden', '');
-else
-    document.querySelector('#AboutSection').removeAttribute('hidden', '');
+        document.querySelector('#AboutSection').setAttribute('hidden', '');
+    else
+        document.querySelector('#AboutSection').removeAttribute('hidden', '');
+}
+
+function showCheckOut(isShown) {
+    if (!isShown) 
+        document.querySelector('#checkoutForm').setAttribute('hidden', '');
+    else
+        document.querySelector('#checkoutForm').removeAttribute('hidden', '');
 }
 
 function controlInit() {
@@ -50,6 +57,7 @@ function controlInit() {
         showSignup(false);
         showCart(false);
         showAbout(false);
+        showCheckOut(false);
     })
     signupButton.addEventListener('click', () => {
         showLogin(false);
@@ -57,6 +65,7 @@ function controlInit() {
         showSignup(true);
         showCart(false);
         showAbout(false);
+        showCheckOut(false)
     })
     cartButton.addEventListener('click', () => {
         showLogin(false);
@@ -65,7 +74,8 @@ function controlInit() {
         showCart(true);
         showAbout(false);
         renderCart();
-        updateTotalPrice()
+        updateTotalPrice();
+        showCheckOut(false);
     })
 
     aboutLink.addEventListener('click', (e) => {
@@ -75,6 +85,16 @@ function controlInit() {
         showSignup(false);
         showCart(false);
         showAbout(true);
+        showCheckOut(false);
+    })
+
+    checkoutBtn.addEventListener('click', () => {
+        showLogin(false);
+        showMenu(false);
+        showSignup(false);
+        showCart(false);
+        showAbout(false);
+        showCheckOut(true);
     })
 
 }

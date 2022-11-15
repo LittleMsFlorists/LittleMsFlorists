@@ -4,7 +4,7 @@ import {getData} from "./firebase.js";
 import {controlInit} from "./controller.js";
 import {signUpInit, auth, checkUser} from "./UserAuth.js";
 import {updateCart, reloadCart, bindEventCart} from "./cart.js";
-
+import { checkoutFormInit } from "./checkoutForm.js";
 export let MENU_DATA = undefined
 
 /**
@@ -143,5 +143,6 @@ window.addEventListener("DOMContentLoaded", async () => {
     bindAddToCart();
     reloadCart();
     bindEventCart();
+    checkoutFormInit();
 });
 

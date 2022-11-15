@@ -158,12 +158,12 @@
                         </svg>
                     </span>
                     <span data-total-item-price></span> 
-                <a class="h6 text-decoration-none link-secondary text-black" href="/checkout">Checkout 
+                <button id="checkoutBtn" class="btn btn-warning text-white" >Checkout 
             <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024" height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
             <path d="M869 487.8L491.2 159.9c-2.9-2.5-6.6-3.9-10.5-3.9h-88.5c-7.4 0-10.8 9.2-5.2 14l350.2 304H152c-4.4 0-8 3.6-8 8v60c0 4.4 3.6 8 8 8h585.1L386.9 854c-5.6 4.9-2.2 14 5.2 14h91.5c1.9 0 3.8-.7 5.2-2L869 536.2a32.07 32.07 0 0 0 0-48.4z">
             </path>
             </svg>
-            </a>
+                </button>
             </h1>
             <div class="container px-4 px-lg-5 mt-5 h-75">
                 <div id="cartBody" class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">Your Cart is empty
@@ -171,46 +171,63 @@
             </div>
         </section>
 
-        <!--Checkout form
-        <form class="">
+        <!--Checkout form -->
+        <section id="checkoutForm" class="py-7 px-4 px-lg-5 mt-5" hidden>
+            
+            <h1>Checkout</h1>
+        <form id="form-CheckOut">
 	        <div class="mb-3">
-		        <label class="form-label" for="name">Name 
+		        <label class="form-label" for="checkOutName">Name 
 		            <span class="text-danger">*</span>
 		        </label>
-  			        <input placeholder="Enter your first and last name" type="text" id="name" class="form-control" value="">
+  			        <input placeholder="Enter your first and last name" type="text" id="checkOutName" class="form-control" value="">
   	        </div>
             <div class="mb-3">
-                <label class="form-label" for="phone">Phone Number 
+                <label class="form-label" for="checkOutPhone">Phone Number 
                     <span class="text-danger">*</span>
                 </label>
-                    <input placeholder="Enter your phone number" type="tel" id="phone" class="form-control" value="">
+                    <input placeholder="Enter your phone number" type="tel" id="checkOutPhone" class="form-control" value="">
             </div>
             <div class="mb-3">
-                    <label class="form-label" for="email">Email Address
+                    <label class="form-label" for="checkOutEmail">Email Address
                     <span class="text-danger">*</span>
                     </label>
-                        <input placeholder="Enter your email address" type="text" id="name" class="form-control" value="">
+                        <input placeholder="Enter your email address" type="text" id="checkOutEmail" class="form-control" value="">
             </div>
             
             <div class="mb-3">
-                    <label class="form-label" for="address">Shipping Address 
+                    <label class="form-label" for="checkOutAddress">Shipping Address 
                         <span class="text-danger">*</span>
                     </label>
-                        <input placeholder="Enter your shipping address" type="text" id="name" class="form-control" value="">
+                        <input placeholder="Enter your shipping address" type="text" id="checkOutAddress" class="form-control" value="">
             </div>
             
                 <div class="mb-3">
-                    <label class="form-label" for="notes">Notes</label>
-                        <textarea rows="3" placeholder="Example: front door" id="notes" class="form-control"></textarea>
+                    <label class="form-label" for="checkOutNotes">Notes</label>
+                        <textarea rows="3" placeholder="Example: front door" id="checkOutNotes" class="form-control"></textarea>
                 </div>
+          
+          <div class="mb-3">
+                <label class="form-label" for="CardNumber">Card number
+                    <span class="text-danger">*</span>
+                </label>
+                    <input placeholder="Enter your credit card number" type="text" id="CardNumber" class="form-control" value="">
+          </div>
+          
+        <div class="mb-3">  
+            <label class="form-label" for="CardDate">Expiration Date
+                    <span class="text-danger">*</span>
+                </label>
+            	<input type="month" class="form-control" id="CardDate">
+            </div>
+          
+          
 
                 <div class="row mb-3 mx-0">
-                    <button type="submit" class="btn btn-warning">Place Your Order</button>
+                    <button type="submit" class="btn btn-warning text-white">Place Your Order</button>
                 </div>
         </form>
-
-        -->
-
+        </section>
 
         <!-- Footer-->
         <footer class="py-3 bg-colorful fixed-bottom">
