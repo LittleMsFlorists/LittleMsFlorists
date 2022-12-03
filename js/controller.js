@@ -3,7 +3,9 @@ import { renderCart, updateTotalPrice, CheckCart } from "./cart.js";
 // control interface
 
 const loginButton  = document.querySelector('#Log-In');
+const loginLink  = document.querySelector('#loginLink');
 const signupButton = document.querySelector('#Sign-Up');
+const signupLink = document.querySelector('#signupLink');
 const ResetPassLink = document.querySelector('#ResetPassLink');
 const cartButton   = document.querySelector('#cartBtn');
 const aboutLink    = document.querySelector('#aboutLink');
@@ -69,6 +71,18 @@ function controlInit() {
         showCheckOut(false);
         showResetPass(false);
     })
+
+    loginLink.addEventListener('click', () => {
+        showLogin(true);
+        showMenu(false);
+        showSignup(false);
+        showCart(false);
+        showAbout(false);
+        showCheckOut(false);
+        showResetPass(false);
+    })
+
+
     signupButton.addEventListener('click', () => {
         showLogin(false);
         showMenu(false);
@@ -78,6 +92,16 @@ function controlInit() {
         showCheckOut(false);
         showResetPass(false);
     })
+    signupLink.addEventListener('click', () => {
+        showLogin(false);
+        showMenu(false);
+        showSignup(true);
+        showCart(false);
+        showAbout(false);
+        showCheckOut(false);
+        showResetPass(false);
+    })
+
     ResetPassLink.addEventListener('click', () => {
         showLogin(false);
         showMenu(false);
